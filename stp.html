@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>STP</title>
+<link rel="stylesheet" href="stp.css" />  
+</head>
+
+
+
+
+<body> 
+    <center>
+        <div class="arial"> <h1>STP</h1></div>
+    <pre class="arial">STP was founded in 2006 at Cairo university,
+        The purpose of STP is to strengthen the leadership, skills, effectiveness and
+        efficiency of involved people enabling them to further enrich the quality of the community and their personal life.</pre>
+    </center>
+<div class="arial"><h2>Vision:</h2></div>
+<p class="arial">To be a Leading organization working on developing youth who will lead positive changes.</p>
+
+
+<div class="arial"><h2>Mission:</h2></div>
+<pre class="arial">
+To develop youth in various fields personally and technically through academic programs, projects,and events in a values oriented system, 
+to take our part in providing a generation capable of playing its roles effictively towards itself,community and country.</pre>
+
+<center>
+<input class="input" type="text" id="colorInputText" placeholder="enter a color : red , blue " /><br>
+<button class="button"  id="colorButton"  onclick="changeColor()">change color</button> 
+</center>
+
+<script> //---------------------------------------------------------------------------------------
+    function changeColor(){
+    let color=document.getElementById('colorInputText').value;
+    document.body.style.color=color;
+}
+
+</script>
+
+<center>
+<input class="input" type="text" id="startDate" placeholder="Start date: mm/dd/yyyy"/>
+<input class="input" type="text" id="endDate" placeholder="End date: mm/dd/yyyy"/><br>
+<button class="button"  id="DateButton"  onclick="startCountdown()">Start countdown</button> 
+</center>
+
+<script> //------------------------------------------------------------------------------------------
+    function startCountdown(){
+    let start=document.getElementById('startDate').value;
+    let end=document.getElementById('endDate').value;
+    
+    var startD= Date.parse(start);
+    var endD= Date.parse(end);
+    var now = new Date();
+    var currentTime=now.getTime();
+
+    if(currentTime>=startD&&currentTime<=endD){
+
+    let TimeDifferece=endD - currentTime;  //milliseconds
+
+    var seconds=Math.floor(TimeDifferece/1000);
+    var minutes=Math.floor(seconds/60);
+    var hours=Math.floor(minutes/60);
+    var days = Math.floor(hours/24);
+    
+
+            //gives the remaining hours , minutes and seconds 
+                hours %= 24;
+				minutes %= 60;
+				seconds %= 60;
+ 
+				hours = (hours < 10) ? "0" + hours : hours;
+				minutes = (minutes < 10) ? "0" + minutes : minutes;
+				seconds = (seconds < 10) ? "0" + seconds : seconds;
+    
+
+    document.getElementById('days').textContent=days;
+    document.getElementById('hours').textContent=hours;
+    document.getElementById('minutes').textContent=minutes;
+    document.getElementById('seconds').textContent=seconds;
+
+    document.getElementById('tableId').style.display="block";
+     
+    setTimeout(startCountdown,1000);
+}
+else {
+document.getElementById('tableId').style.display="none";
+ }
+    }
+
+</script>
+
+
+<table id="tableId" style="display: none; position: absolute;;
+top: 95%;
+left: 35%;" >
+    
+<tr>
+    <td colspan="4">
+</tr>
+
+    
+
+<tr>
+<td class="countdownContainer"> days</td>
+<td class="countdownContainer">hours</td>
+<td class="countdownContainer">minutes</td>
+<td class="countdownContainer">seconds</td>
+</tr>
+
+<tr  class="sizeinfo"></tr>
+<td class="countdownContainer" id="days"></td>
+<td class="countdownContainer" id="hours"></td>
+<td class="countdownContainer" id="minutes"></td>
+<td class="countdownContainer" id="seconds"></td>
+</tr>
+
+
+
+</table>
+
+
+</body>
+</html>
